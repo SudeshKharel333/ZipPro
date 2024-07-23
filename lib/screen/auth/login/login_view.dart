@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   ClipOval(
                     child: Image.asset(
-                      AssetManager.zipPro,
+                      AssetManager.Zippro,
                       width: 170,
                       height: 170,
                     ),

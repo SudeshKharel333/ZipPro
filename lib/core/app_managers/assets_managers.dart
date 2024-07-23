@@ -7,7 +7,7 @@ const String jptPath = "assets/jpt";
 class AssetManager {
   //images
   static const String appLogo = "$imagePath/logo221.jpg";
-  static const String zipPro = "$imagePath/Zippro.png";
+  static const String Zippro = "$imagePath/Zippro.png";
   static const String catdBackground = "$imagePath/cardkoicon.png";
 
   // static const String serverError = "$imagePath/server_error.png";
