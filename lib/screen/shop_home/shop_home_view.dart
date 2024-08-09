@@ -30,15 +30,20 @@ class _ShopHomePageState extends State<ShopHomePage> {
               children: [
                 Stack(
                   children: [
-                    Container(
-                        height: 130,
-                        decoration: BoxDecoration(
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Container(
+                          height: 130,
+                          decoration: BoxDecoration(
                             color: Colors.blueAccent,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32))),
-                        width: double.infinity),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(32),
+                                bottomRight: Radius.circular(32)),
+                          ),
+                          width: double.infinity),
+                    ),
                     const Positioned(
-                      top: 75,
+                      top: 100,
                       left: 60,
                       right: 60,
                       child: CostumeFormField.search(
