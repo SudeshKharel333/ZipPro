@@ -163,13 +163,189 @@ class _ShopHomePageState extends State<ShopHomePage> {
                 viewportFraction: 0.8,
               ),
             ),
-            const Column(
-              children: [
-                Text("Categories"),
-                Row(
-                  children: [],
-                )
-              ],
+            Container(
+              height: 150,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                //color: Colors.purple, // Background color of the container
+                borderRadius: BorderRadius.circular(10), // Rounded corners
+                border: Border.all(
+                  color: Colors.purpleAccent, // Border color
+                  width: 2, // Border width
+                ),
+              ),
+              child: Column(
+                children: [
+                  Expanded(child: Text("Categories")),
+                  Container(
+                    width: MediaQuery.of(context)
+                        .size
+                        .width, // Set the desired width
+                    height: 100, // Set the desired height
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Card(
+                            elevation: 0, // Shadow depth
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.circular(10), // Rounded corners
+                            ),
+                            color: Colors.purple, // Card background color
+                            child: const Padding(
+                              padding: const EdgeInsets.all(
+                                  16.0), // Padding around the text
+                              child: Center(
+                                child: Text(
+                                  'Category',
+                                  style: TextStyle(
+                                    color: Colors.white, // Text color
+                                    fontSize: 18, // Font size
+                                    fontWeight: FontWeight.bold, // Bold text
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
             )
           ],
         ),
