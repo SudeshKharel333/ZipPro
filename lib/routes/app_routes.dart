@@ -1,7 +1,11 @@
-class AppRoutes{
+class AppRoutes {
   static const homeScreen = "/home";
-  static const noticeDetailsScreen = "/noticeDetailsScreen";
-  static const memberListScreen = "/memberListScreen";
-  static const loginScreen = "/loginScreen";
-  static const shopHomeScreen = "/shopHomeScreen";
+  static const addUserScreen = "/addUserScreen";
+  static const LoginUserScreen = "/loginScreen";
+  static const WelcomeScreen = "/welcomeScreen";
+  static const addMachineScreen = "/addMachineScreen";
+  static const viewMachine = "/viewMachineScreen";
+  static const machineDispatchScreen = "/machineDispatchScreen";
+  static const listUserScreen = "/listUserScreen";
+  // static var viewMachine;
 }

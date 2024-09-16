@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/app_managers/assets_managers.dart';
+import '../screen/shop_home/shop_home_view.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -67,6 +68,17 @@ class _SplashScreenState extends State<SplashScreen>
       parent: _textController,
       curve: Curves.easeInOut,
     ));
+
+    _textController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ShopHomePage()), // Replace with your actual homepage widget
+        );
+      }
+    });
   }
 
   void _startTextAnimation() {
