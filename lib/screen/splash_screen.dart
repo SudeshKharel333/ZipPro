@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/screen/auth/login/login_view.dart';
 
 import '../core/app_managers/assets_managers.dart';
 import '../screen/shop_home/shop_home_view.dart';
@@ -75,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  ShopHomePage()), // Replace with your actual homepage widget
+                  LoginPage()), // Replace with your actual homepage widget
         );
       }
     });

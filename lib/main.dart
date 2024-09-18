@@ -58,8 +58,8 @@ class _MyAppState extends State<MyApp> {
               : SplashScreen(),
       initialBinding:
           (storage.read("is_login") != null && storage.read("is_login") == true)
-              ? ShopHomeBinding()
-              : ShopHomeBinding(),
+              ? LoginBinding()
+              : LoginBinding(),
       getPages: AppPages.pages,
     );
   }

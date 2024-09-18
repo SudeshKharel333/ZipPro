@@ -488,6 +488,22 @@ class _ShopHomePageState extends State<ShopHomePage> {
             ],
           ),
         ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled),
+              label: 'Home ',
+            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.camera),
+            //   label: '',
+            // ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              label: 'Chats',
+            ),
+          ],
+        ),
       );
     });
   }

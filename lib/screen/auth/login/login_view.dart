@@ -96,13 +96,21 @@ class _LoginPageState extends State<LoginPage> {
                           ))
                     ],
                   ),
-                  Gap(64),
+                  Gap(40),
                   CostumeButtons.common(
                     labelText: 'Login',
                     onPressed: () {
                       logic.login();
                     },
                     isEnabled: logic.validateFields(),
+                  ),
+                  Gap(20),
+                  CostumeButtons.blueBorder(
+                    labelText: 'Signup',
+                    onPressed: () {
+                      // logic.login();
+                    },
+                    isEnabled: false,
                   ),
                 ],
               ),
