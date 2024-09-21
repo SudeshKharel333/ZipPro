@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/screen/auth/login/login_view.dart';
+import 'package:my_flutter_app/screen/auth/register/register_view.dart';
 
 import '../core/app_managers/assets_managers.dart';
-import '../screen/shop_home/shop_home_view.dart';
+//import '../screen/shop_home/shop_home_view.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

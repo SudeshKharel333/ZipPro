@@ -35,19 +35,20 @@ class LoginLogic extends GetxController {
           context = context;
           return Loading("logging in..", false);
         });
-    responsee.Response response = await _provider.login(
-        emailController.text, passwordController.text, "1234", "1234");
+    // responsee.Response response = await _provider.login(
+    //     emailController.text, passwordController.text, "1234", "1234");
     navigator?.pop(Get.context!);
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      loginResponse = LoginResponse.fromJson(response.data);
-      storage.write("token", loginResponse.token);
-      storage.write("user_id", loginResponse.user!.id ?? 0);
-      storage.write("user_name", loginResponse.user?.name);
+    if (emailController.text == "sk@gmail.com" &&
+        passwordController.text == "123456") {
+      //   loginResponse = LoginResponse.fromJson(response.data);
+      //   storage.write("token", loginResponse.token);
+      //   storage.write("user_id", loginResponse.user!.id ?? 0);
+      //   storage.write("user_name", loginResponse.user?.name);
       storage.write("is_login", true);
       Get.toNamed(AppRoutes.homeScreen);
     } else {
-      loginResponse = LoginResponse.fromJson(response.data);
+      //loginResponse = LoginResponse.fromJson(response.data);
       showDialog(
           context: Get.context!,
           barrierDismissible: false,

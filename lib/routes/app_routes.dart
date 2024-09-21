@@ -7,5 +7,10 @@ class AppRoutes {
   static const viewMachine = "/viewMachineScreen";
   static const machineDispatchScreen = "/machineDispatchScreen";
   static const listUserScreen = "/listUserScreen";
+  static const loginPage = '/login';
+  static const registerPage = '/register';
+  static const productPage = '/product';
+  static const profilePage = '/profile';
+
   // static var viewMachine;
 }

@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter_app/core/enums/validation_type.dart';
+import 'package:my_flutter_app/screen/auth/profile/profile_view.dart';
+import 'package:my_flutter_app/screen/product/product_view.dart';
 import '../../widgets/input_fields.dart';
 import 'shop_home_logic.dart';
 
@@ -33,9 +35,12 @@ class _ShopHomePageState extends State<ShopHomePage> {
                   Container(
                     height: 175,
                     width: double.infinity,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color(0xffb74093),
-                      borderRadius: BorderRadius.all(Radius.circular(32)),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(32),
+                        bottomRight: Radius.circular(32),
+                      ),
                     ),
                   ),
                   // Search input field
@@ -67,13 +72,21 @@ class _ShopHomePageState extends State<ShopHomePage> {
                           Row(
                             children: [
                               IconButton(
-                                icon: const Icon(Icons.person),
+                                icon: const Icon(Icons.person, size: 25),
                                 onPressed: () {
-                                  // Action for profile button
+                                  // Navigate to ProfilePage when the icon is clicked
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProfilePage()),
+                                  );
                                 },
                               ),
                               IconButton(
-                                icon: const Icon(Icons.shopping_cart),
+                                icon: const Icon(
+                                  Icons.shopping_cart,
+                                  size: 25,
+                                ),
                                 onPressed: () {
                                   // Action for cart button
                                 },
@@ -372,9 +385,18 @@ class _ShopHomePageState extends State<ShopHomePage> {
                       textAlign: TextAlign.left,
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.count(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigate to the second page on tap
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductPage()),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.count(
                             crossAxisCount: 2,
                             crossAxisSpacing: 8,
                             mainAxisSpacing: 8,
@@ -384,20 +406,48 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                   color: Colors.purpleAccent,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    'product',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    // Product Image
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          8), // Match the container's border radius
+                                      child: Image.network(
+                                          'https://www.kgkgroup.com/wp-content/uploads/2023/08/Understand-The-Evolution-Of-Diamond-Jewellery-Through-Time_417x238.jpg'),
                                     ),
-                                  ),
+                                    // Product Name and Price
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Product Name $index', // Replace with your product name
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '\$${(index + 1) * 10}', // Replace with your product price
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
-                            })),
+                            }),
+                          ),
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

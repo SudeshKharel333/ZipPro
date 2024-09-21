@@ -7,6 +7,7 @@ import 'package:my_flutter_app/screen/admin/admin_dashboard_view.dart';
 import 'package:my_flutter_app/screen/auth/login/login_binding.dart';
 import 'package:my_flutter_app/screen/auth/login/login_view.dart';
 import 'package:alice/alice.dart';
+import 'package:my_flutter_app/screen/auth/register/register_binding.dart';
 import 'package:my_flutter_app/screen/home/home_binding.dart';
 import 'package:my_flutter_app/screen/home/home_view.dart';
 import 'package:my_flutter_app/screen/shop_home/shop_home_binding.dart';

@@ -3,6 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter_app/core/app_managers/assets_managers.dart';
 import 'package:my_flutter_app/core/enums/validation_type.dart';
+//import 'package:my_flutter_app/routes/app_routes.dart';
+import 'package:my_flutter_app/screen/auth/register/register_view.dart';
 
 import '../../../widgets/buttons.dart';
 import '../../../widgets/input_fields.dart';
@@ -49,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 14,
                         color: Color.fromARGB(255, 190, 202, 212)),
                   ),
-                  Gap(64),
+                  Gap(44),
                   Icon(
                     Icons.person,
                     color: Colors.black,
@@ -108,9 +110,10 @@ class _LoginPageState extends State<LoginPage> {
                   CostumeButtons.blueBorder(
                     labelText: 'Signup',
                     onPressed: () {
-                      // logic.login();
+                      Get.to(() =>
+                          const RegisterPage()); // Navigate to RegisterPage
                     },
-                    isEnabled: false,
+                    isEnabled: true, // or based on your logic
                   ),
                 ],
               ),
