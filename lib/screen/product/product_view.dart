@@ -19,7 +19,7 @@ class ProductPage extends StatelessWidget {
     //return Scaffold();
     return Scaffold(
       appBar: AppBar(
-        title: Text("productName"),
+        title: Text("Necklace"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -43,7 +43,7 @@ class ProductPage extends StatelessWidget {
                 children: [
                   // Product Title
                   Text(
-                    "product",
+                    "Necklace",
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
@@ -55,7 +55,7 @@ class ProductPage extends StatelessWidget {
                   SizedBox(height: 8),
                   // Product Description
                   Text(
-                    "Description",
+                    "Good Quality",
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 16),

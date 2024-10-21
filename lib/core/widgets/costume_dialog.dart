@@ -61,107 +61,112 @@ class CostumeDialog extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(22),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
-                            color: titleColor),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(22),
-                        child: Image.asset(
-                          image,
-                          height: 140,
-                          width: 140,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 12, right: 12, bottom: 12),
-                        child: Text(
-                          message,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(22),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          title,
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22,
+                              color: titleColor),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(right: 10),
-                                  child: ElevatedButton(
-                                      onPressed: (onButton1Clicked) != null
-                                          ? () {
-                                        Navigator.pop(context);
-                                        onButton1Clicked!();
-                                      }
-                                          : () {
-                                        Navigator.pop(context);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(12.0)),
-                                          backgroundColor:
-                                          ColorManager.primary),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(14),
-                                        child: Text(
-                                          buttom1Lavel,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      )),
-                                ),
-                              ),
-                              Visibility(
-                                visible: button2Enabled,
-                                child: Expanded(
+                        Padding(
+                          padding: const EdgeInsets.all(22),
+                          child: Image.asset(
+                            image,
+                            height: 140,
+                            width: 140,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 12, right: 12, bottom: 12),
+                          child: Text(
+                            message,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
+                                    padding: const EdgeInsets.only(right: 10),
                                     child: ElevatedButton(
-                                        onPressed: (onButton2Clicked) != null
+                                        onPressed: (onButton1Clicked) != null
                                             ? () {
-                                          onButton2Clicked!();
-                                          Navigator.pop(context);
-                                        }
+                                                Navigator.pop(context);
+                                                onButton1Clicked!();
+                                              }
                                             : () {
-                                          Navigator.pop(context);
-                                        },
+                                                Navigator.pop(context);
+                                              },
                                         style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                              BorderRadius.circular(12.0)),
-                                          backgroundColor: const Color.fromARGB(
-                                              255, 219, 223, 170),
-                                        ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        12.0)),
+                                            backgroundColor:
+                                                ColorManager.primary),
                                         child: Padding(
                                           padding: const EdgeInsets.all(14),
                                           child: Text(
-                                            buttom2Lavel,
+                                            buttom1Lavel,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black),
+                                                color: Colors.white),
                                           ),
                                         )),
                                   ),
                                 ),
-                              ),
-                            ]),
-                      ),
-                    ],
+                                Visibility(
+                                  visible: button2Enabled,
+                                  child: Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: ElevatedButton(
+                                          onPressed: (onButton2Clicked) != null
+                                              ? () {
+                                                  onButton2Clicked!();
+                                                  Navigator.pop(context);
+                                                }
+                                              : () {
+                                                  Navigator.pop(context);
+                                                },
+                                          style: ElevatedButton.styleFrom(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        12.0)),
+                                            backgroundColor:
+                                                const Color.fromARGB(
+                                                    255, 219, 223, 170),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(14),
+                                            child: Text(
+                                              buttom2Lavel,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black),
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

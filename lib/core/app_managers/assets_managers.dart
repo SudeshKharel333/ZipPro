@@ -9,6 +9,10 @@ class AssetManager {
   static const String appLogo = "$imagePath/logo221.jpg";
   static const String Zippro = "$imagePath/Zippro.png";
   static const String catdBackground = "$imagePath/cardkoicon.png";
+  static const String esewa = "$imagePath/esewa.png";
+  static const String khalti = "$imagePath/khalti.png";
+  static const String imepay = "$imagePath/IMEpay.png";
+  static const String cash = "$imagePath/cash.png";
 
   // static const String serverError = "$imagePath/server_error.png";
   // static const String noConnection = "$imagePath/error_state_no_connection.png";

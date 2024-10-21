@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:my_flutter_app/core/app_managers/color_manager.dart';
 import 'admin_logic.dart';
 
-class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+class AdminPage extends StatefulWidget {
+  const AdminPage({Key? key}) : super(key: key);
 
   @override
-  State<DashboardPage> createState() => _DashboardPageState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _AdminPageState extends State<AdminPage> {
   @override
   Widget build(BuildContext context) {
     //return GetBuilder<admin_logic>(builder: (logic) {

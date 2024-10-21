@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter_app/core/enums/validation_type.dart';
 import 'package:my_flutter_app/screen/auth/profile/profile_view.dart';
+import 'package:my_flutter_app/screen/cart/cart_view.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
 import '../../widgets/input_fields.dart';
 import 'shop_home_logic.dart';
@@ -83,12 +84,14 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                 },
                               ),
                               IconButton(
-                                icon: const Icon(
-                                  Icons.shopping_cart,
-                                  size: 25,
-                                ),
+                                icon: const Icon(Icons.shopping_cart, size: 25),
                                 onPressed: () {
-                                  // Action for cart button
+                                  // Navigate to ProfilePage when the icon is clicked
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const CartView()),
+                                  );
                                 },
                               ),
                             ],
@@ -108,10 +111,16 @@ class _ShopHomePageState extends State<ShopHomePage> {
                       margin: EdgeInsets.all(6.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8.0),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/408422438_888491899573928_1661727275984616988_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=bFmkpzF2kXsQ7kNvgGpLWvn&_nc_ht=scontent.fktm7-1.fna&_nc_gid=A-MdXRcDMzYauI_Xu4UM5v_&oh=00_AYCCKTn3r2hHb9Tstlr2u2KESU1uDhprogwUiAkY0r30og&oe=66EE3179"),
-                          fit: BoxFit.cover,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            8.0), // Ensures the image follows the border radius
+                        child: Image.asset(
+                          'assets/images/momo.png', // Add your logo path here
+                          // height: 50, // Adjust logo size
+                          // width: 50,
+                          fit: BoxFit
+                              .cover, // Ensures the image fits within the given size
                         ),
                       ),
                     ),
@@ -123,7 +132,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/416340938_906873704402414_4996372259376998305_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xXvJGjr2R0wQ7kNvgFxqZII&_nc_ht=scontent.fktm7-1.fna&_nc_gid=AZFUUYRktPQbSUQSh12TFo-&oh=00_AYCcT8bTLAydO5rYzh3-UYLhsc2uvwWrFYzKzaApjKGdug&oe=66EE4AB8"),
+                              "https://www.allrecipes.com/thmb/ygY1JXP8_IkDSjPPW5VH2dTiMMU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -136,7 +145,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/416340938_906873704402414_4996372259376998305_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xXvJGjr2R0wQ7kNvgFxqZII&_nc_ht=scontent.fktm7-1.fna&_nc_gid=AZFUUYRktPQbSUQSh12TFo-&oh=00_AYCcT8bTLAydO5rYzh3-UYLhsc2uvwWrFYzKzaApjKGdug&oe=66EE4AB8"),
+                              "https://www.allrecipes.com/thmb/ygY1JXP8_IkDSjPPW5VH2dTiMMU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -149,7 +158,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/416340938_906873704402414_4996372259376998305_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xXvJGjr2R0wQ7kNvgFxqZII&_nc_ht=scontent.fktm7-1.fna&_nc_gid=AZFUUYRktPQbSUQSh12TFo-&oh=00_AYCcT8bTLAydO5rYzh3-UYLhsc2uvwWrFYzKzaApjKGdug&oe=66EE4AB8"),
+                              "https://www.allrecipes.com/thmb/ygY1JXP8_IkDSjPPW5VH2dTiMMU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -162,7 +171,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                         borderRadius: BorderRadius.circular(8.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              "https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-6/416340938_906873704402414_4996372259376998305_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=xXvJGjr2R0wQ7kNvgFxqZII&_nc_ht=scontent.fktm7-1.fna&_nc_gid=AZFUUYRktPQbSUQSh12TFo-&oh=00_AYCcT8bTLAydO5rYzh3-UYLhsc2uvwWrFYzKzaApjKGdug&oe=66EE4AB8"),
+                              "https://www.allrecipes.com/thmb/ygY1JXP8_IkDSjPPW5VH2dTiMMU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/50347-indian-tandoori-chicken-DDMFS-4x3-3035-205e98c80b2f4275b5bd010c396d9149.jpg"),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -218,16 +227,29 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                     10), // Rounded corners
                               ),
                               color: Colors.purple, // Card background color
-                              child: const Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Category',
-                                    style: TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 18, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
+                              child: const SizedBox(
+                                width: 100, // Fixed width for the card
+                                height: 100, // Fixed height for the card
+                                child: Padding(
+                                  padding: const EdgeInsets.all(
+                                      16.0), // Padding around the text
+                                  child: Center(
+                                    child: Text(
+                                      'Food and beverage', // Long text that may wrap
+                                      textAlign: TextAlign
+                                          .center, // Center the text horizontally
+                                      style: const TextStyle(
+                                        color: Colors.white, // Text color
+                                        fontSize: 12, // Font size
+                                        fontWeight:
+                                            FontWeight.bold, // Bold text
+                                      ),
+                                      maxLines:
+                                          2, // Max number of lines to avoid overflow
+                                      overflow: TextOverflow
+                                          .ellipsis, // Add "..." if text overflows
+                                      softWrap:
+                                          true, // Wrap text to fit within the available space
                                     ),
                                   ),
                                 ),
@@ -240,16 +262,29 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                     10), // Rounded corners
                               ),
                               color: Colors.purple, // Card background color
-                              child: const Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Category',
-                                    style: TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 18, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
+                              child: const SizedBox(
+                                width: 100, // Fixed width for the card
+                                height: 100, // Fixed height for the card
+                                child: Padding(
+                                  padding: const EdgeInsets.all(
+                                      16.0), // Padding around the text
+                                  child: Center(
+                                    child: Text(
+                                      'Retail and Wholesale', // Long text that may wrap
+                                      textAlign: TextAlign
+                                          .center, // Center the text horizontally
+                                      style: const TextStyle(
+                                        color: Colors.white, // Text color
+                                        fontSize: 12, // Font size
+                                        fontWeight:
+                                            FontWeight.bold, // Bold text
+                                      ),
+                                      maxLines:
+                                          2, // Max number of lines to avoid overflow
+                                      overflow: TextOverflow
+                                          .ellipsis, // Add "..." if text overflows
+                                      softWrap:
+                                          true, // Wrap text to fit within the available space
                                     ),
                                   ),
                                 ),
@@ -262,16 +297,29 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                     10), // Rounded corners
                               ),
                               color: Colors.purple, // Card background color
-                              child: const Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Category',
-                                    style: TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 18, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
+                              child: const SizedBox(
+                                width: 100, // Fixed width for the card
+                                height: 100, // Fixed height for the card
+                                child: Padding(
+                                  padding: const EdgeInsets.all(
+                                      16.0), // Padding around the text
+                                  child: Center(
+                                    child: Text(
+                                      'Retail and wholesale', // Long text that may wrap
+                                      textAlign: TextAlign
+                                          .center, // Center the text horizontally
+                                      style: const TextStyle(
+                                        color: Colors.white, // Text color
+                                        fontSize: 12, // Font size
+                                        fontWeight:
+                                            FontWeight.bold, // Bold text
+                                      ),
+                                      maxLines:
+                                          2, // Max number of lines to avoid overflow
+                                      overflow: TextOverflow
+                                          .ellipsis, // Add "..." if text overflows
+                                      softWrap:
+                                          true, // Wrap text to fit within the available space
                                     ),
                                   ),
                                 ),
@@ -284,16 +332,29 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                     10), // Rounded corners
                               ),
                               color: Colors.purple, // Card background color
-                              child: const Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Category',
-                                    style: TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 18, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
+                              child: const SizedBox(
+                                width: 100, // Fixed width for the card
+                                height: 100, // Fixed height for the card
+                                child: Padding(
+                                  padding: const EdgeInsets.all(
+                                      16.0), // Padding around the text
+                                  child: Center(
+                                    child: Text(
+                                      'Agriculture', // Long text that may wrap
+                                      textAlign: TextAlign
+                                          .center, // Center the text horizontally
+                                      style: const TextStyle(
+                                        color: Colors.white, // Text color
+                                        fontSize: 12, // Font size
+                                        fontWeight:
+                                            FontWeight.bold, // Bold text
+                                      ),
+                                      maxLines:
+                                          2, // Max number of lines to avoid overflow
+                                      overflow: TextOverflow
+                                          .ellipsis, // Add "..." if text overflows
+                                      softWrap:
+                                          true, // Wrap text to fit within the available space
                                     ),
                                   ),
                                 ),
@@ -423,7 +484,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                       child: Column(
                                         children: [
                                           Text(
-                                            'Product Name $index', // Replace with your product name
+                                            'Product Name Necklace', // Replace with your product name
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 16,
@@ -431,7 +492,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                             ),
                                           ),
                                           Text(
-                                            '\$${(index + 1) * 10}', // Replace with your product price
+                                            '\$${50}', // Replace with your product price
                                             style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 14,
@@ -464,9 +525,18 @@ class _ShopHomePageState extends State<ShopHomePage> {
                       textAlign: TextAlign.left,
                     ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.count(
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigate to the second page on tap
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductPage()),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.count(
                             crossAxisCount: 2,
                             crossAxisSpacing: 8,
                             mainAxisSpacing: 8,
@@ -476,20 +546,51 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                   color: Colors.purpleAccent,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: Center(
-                                  child: Text(
-                                    'product',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    // Product Image
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          8), // Match the container's border radius
+                                      child: Image.network(
+                                        'https://static.meroorder.com/media/images/items/1697015939822_detail-laptop-table-1.webp',
+                                        height: 100,
+                                        width: 100,
+                                      ),
                                     ),
-                                  ),
+                                    // Product Name and Price
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            'Product Name: Study table', // Replace with your product name
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          Text(
+                                            '\$${5}', // Replace with your product price
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 14,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               );
-                            })),
+                            }),
+                          ),
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

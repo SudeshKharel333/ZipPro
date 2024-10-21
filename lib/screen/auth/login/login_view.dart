@@ -3,7 +3,6 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter_app/core/app_managers/assets_managers.dart';
 import 'package:my_flutter_app/core/enums/validation_type.dart';
-//import 'package:my_flutter_app/routes/app_routes.dart';
 import 'package:my_flutter_app/screen/auth/register/register_view.dart';
 
 import '../../../widgets/buttons.dart';
@@ -87,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   Gap(6),
                   Row(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       InkWell(
                           onTap: () {
                             print("forget password clicked");
@@ -101,9 +100,12 @@ class _LoginPageState extends State<LoginPage> {
                   Gap(40),
                   CostumeButtons.common(
                     labelText: 'Login',
-                    onPressed: () {
-                      logic.login();
-                    },
+                    onPressed: logic.validateFields()
+                        ? () async {
+                            // Ensure that login logic runs only if the fields are validated
+                            await logic.login();
+                          }
+                        : null, // Disable button if validation fails
                     isEnabled: logic.validateFields(),
                   ),
                   Gap(20),
