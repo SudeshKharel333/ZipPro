@@ -438,7 +438,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                 child: Column(
                   children: [
                     Text(
-                      "Flash Sales",
+                      "Latest Products",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -512,130 +512,6 @@ class _ShopHomePageState extends State<ShopHomePage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 400,
-                child: Column(
-                  children: [
-                    Text(
-                      "Featured products",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          // Navigate to the second page on tap
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProductPage()),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: GridView.count(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            children: List.generate(12, (index) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.purpleAccent,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Product Image
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Match the container's border radius
-                                      child: Image.network(
-                                        'https://static.meroorder.com/media/images/items/1697015939822_detail-laptop-table-1.webp',
-                                        height: 100,
-                                        width: 100,
-                                      ),
-                                    ),
-                                    // Product Name and Price
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            'Product Name: Study table', // Replace with your product name
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Text(
-                                            '\$${5}', // Replace with your product price
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 400,
-                child: Column(
-                  children: [
-                    Text(
-                      "Bulk deals",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.left,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.count(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            children: List.generate(12, (index) {
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.purpleAccent,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'product',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            })),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),

@@ -2,14 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../constants/api.dart';
 import '../main.dart';
-import '../models/notice_module.dart';
-import '../models/shop_response.dart';
 
-class SliderProvider {
+class StoreProvider {
   Dio _dio = Dio();
   late BaseOptions baseOptions;
 
-  SliderProvider() {
+  StoreProvider() {
     setUpOptions();
   }
 
@@ -23,9 +21,7 @@ class SliderProvider {
         return status! < 500;
       },
     );
-
     _dio = Dio(baseOptions);
-
     if (kDebugMode) {
       _dio.interceptors
         ..add(LogInterceptor(requestBody: true))
@@ -33,53 +29,37 @@ class SliderProvider {
     }
   }
 
-  Future<dynamic> getSlider() async {
+  Future<dynamic> getCategories() async {
     try {
-      final response = await _dio.get('sliders');
+      final response = await _dio.get('categorys');
       return response;
     } catch (e) {
       return Response(statusCode: 500, requestOptions: RequestOptions());
     }
   }
 
-  //form data formate
-  Future<dynamic> getSlider2(
-      String name, String address, String contactNo) async {
+  Future<dynamic> getSubCategories(int catId) async {
     try {
-      FormData formData;
-      formData = FormData.fromMap({
-        "name": name,
-        "address": address,
-        "contact": contactNo,
+      final response = await _dio.get('subcategorys', queryParameters: {
+      "category_id": catId,
       });
-      final response = await _dio.get('sliders', data: formData);
       return response;
     } catch (e) {
       return Response(statusCode: 500, requestOptions: RequestOptions());
     }
   }
+  // latestproducts
 
-  //form json
-
-  Future<dynamic> getSlider3(
-      String name, String address, String contactNo) async {
+  Future<dynamic> getLatestProducts() async {
     try {
-      String json = "{\"name\":\"" +
-          name +
-          "\",\"address\":\"" +
-          address +
-          "\",\"contact\":\"" +
-          contactNo +
-          "\"}";
-      Categories categories = new Categories();
-      // var json = Categories.toJson(categories);
-      final response = await _dio.get('sliders', data: json);
+      final response = await _dio.get('latestproducts');
       return response;
     } catch (e) {
       return Response(statusCode: 500, requestOptions: RequestOptions());
     }
   }
 
-// @GET("productbycategory")
-// Observable<List<ShopProducts>> loadShopCategoryProducts(@Query("category_id") Integer catID);
+  // @GET("productbycategory")
+  // @Query("category_id")
+
 }

@@ -1,25 +1,29 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:my_flutter_app/constants/api.dart';
+//import 'package:my_flutter_app/constants/api.dart';
 import 'package:my_flutter_app/core/widgets/loading_dialog.dart';
 import 'package:my_flutter_app/models/login_response.dart';
 import 'package:my_flutter_app/routes/app_routes.dart';
 
 import '../../../core/helper/input_validator.dart';
 import '../../../core/widgets/costume_dialog.dart';
-import '../../../providers/auth_provider.dart';
+//import '../../../providers/auth_provider.dart';
 
 class LoginLogic extends GetxController {
   TextEditingController passwordController = TextEditingController();
   TextEditingController emailController = TextEditingController();
 
-  final _provider = AuthProvider();
+  //final _provider = AuthProvider();
   LoginResponse loginResponse = LoginResponse();
   final storage = GetStorage();
-  Dio dio = Dio();
+  Dio dio = Dio(BaseOptions(
+      // baseUrl: 'http://localhost',
+      //connectTimeout: const Duration(seconds: 10),
+      //receiveTimeout: const Duration(seconds: 10),
+      ));
 
   validateFields() {
     return InputValidators.emailValidator(emailController.text) == null &&
@@ -31,7 +35,7 @@ class LoginLogic extends GetxController {
       context: Get.context!,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Loading("logging in..", false);
+        return const Loading("logging in..", false);
       },
     );
 
@@ -39,43 +43,32 @@ class LoginLogic extends GetxController {
     String password = passwordController.text;
 
     try {
-      print("inside api call");
+      print("inside api call2" + email + "-" + password);
+
       var response = await dio.post(
-        '$apiBaseUrl/login/',
+        'http://localhost:3000/login',
         data: {
           'email': email,
           'password': password,
         },
+        options: Options(
+          headers: {'Content-Type': 'application/json; charset=utf-8'},
+          extra: {'port': 3000},
+        ),
       );
-
       Get.back(); // Dismiss loading dialog
-
       if (response.statusCode == 200) {
         // Successfully logged in
         print('Login successful: ${response.data}');
         Get.offAllNamed(AppRoutes.homeScreen);
-      } else {
-        // Handle failed login attempts
-        loginResponse = LoginResponse.fromJson(response.data);
-        showDialog(
-          context: Get.context!,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return CostumeDialog(
-              title: loginResponse.status ?? "error",
-              titleColor: Colors.red,
-              message: loginResponse.message ?? "invalid credentials",
-              buttom1Lavel: "Retry",
-              onButton1Clicked: () async {
-                await login(); // Retry login
-              },
-              button2Enabled: false,
-            );
-          },
-        );
       }
     } catch (e) {
-      print('Error: ${e.toString()}');
+      String errorMessage = "";
+      if (e is DioException) {
+        if (e.response?.statusCode == 401) {
+          errorMessage = "Invalid login credentials!";
+        }
+      }
       Get.back(); // Dismiss loading dialog
       showDialog(
         context: Get.context!,
@@ -84,7 +77,7 @@ class LoginLogic extends GetxController {
           return CostumeDialog(
             title: "Error",
             titleColor: Colors.red,
-            message: e.toString(),
+            message: errorMessage,
             buttom1Lavel: "OK",
             onButton1Clicked: () async {
               // await login(); // Retry login

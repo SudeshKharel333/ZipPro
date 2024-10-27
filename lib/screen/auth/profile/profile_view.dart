@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter_app/widgets/buttons.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,15 +26,15 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Profile Picture
-            CircleAvatar(
+            const CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage(
                   'https://example.com/profile_pic.jpg'), // Replace with actual URL or Asset
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
 
             // User Name
-            Text(
+            const Text(
               'John Doe', // User's name
               style: TextStyle(
                 fontSize: 24,
@@ -41,10 +42,10 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             // User Email
-            Text(
+            const Text(
               'johndoe@example.com', // User's email
               style: TextStyle(
                 fontSize: 16,
@@ -52,20 +53,20 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
             // Additional Details Section
             Expanded(
               child: ListView(
                 children: [
-                  Card(
+                  const Card(
                     child: ListTile(
                       leading: Icon(Icons.phone),
                       title: Text('Phone'),
                       subtitle: Text('+123 456 7890'), // User's phone number
                     ),
                   ),
-                  Card(
+                  const Card(
                     child: ListTile(
                       leading: Icon(Icons.location_on),
                       title: Text('Address'),
@@ -73,13 +74,40 @@ class ProfilePage extends StatelessWidget {
                           Text('123 Main St, City, Country'), // User's address
                     ),
                   ),
-                  Card(
+                  const Card(
                     child: ListTile(
                       leading: Icon(Icons.cake),
                       title: Text('Birthday'),
                       subtitle: Text('January 1, 1990'), // User's birthday
                     ),
                   ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add action here
+                    },
+                    child: Text("Edit Profile"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue, // Background color
+                      foregroundColor: Colors.white, // Text color
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                  ),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add action here
+                    },
+                    child: Text("Logout"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black, // Background color
+                      foregroundColor: Colors.white, // Text color
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                  ),
+
                   // Add more details here
                 ],
               ),
