@@ -13,20 +13,12 @@ class RegisterLogic extends GetxController {
   final dio_form_data.Dio _dio = dio_form_data.Dio();
   XFile? _imageFile;
 
-  // Method to set the image file
+  // Set the image file
   void setImageFile(XFile image) {
     _imageFile = image;
   }
 
   Future<void> registerUser() async {
-    // Debugging prints
-    print('Email: ${emailController.text}');
-    print('Password: ${passwordController.text}');
-    print('Confirm Password: ${confirmPasswordController.text}');
-    print('Phone: ${phoneController.text}');
-    print('Full Name: ${fullNameController.text}');
-    print('Image File: $_imageFile');
-
     if (emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
         confirmPasswordController.text.isEmpty ||
@@ -54,20 +46,19 @@ class RegisterLogic extends GetxController {
         'fullName': fullNameController.text,
         'phone': phoneController.text,
         'imageFile': await dio_form_data.MultipartFile.fromFile(
-            _imageFile!.path,
-            filename: 'upload.jpg'),
+          _imageFile!.path,
+          filename: 'upload.jpg',
+        ),
       });
 
-      final response =
-          await _dio.post('http://192.168.1.77:3000/register', data: formData);
-      print('Response status code: ${response.statusCode}');
-      print('Response data: ${response.data}');
-      if (response.statusCode == 200) {
-        // Show success message
-        Get.snackbar('Success', 'Registration successful!');
+      final response = await _dio.post(
+        'http://192.168.1.74:3000/register', // replace <YOUR_LOCAL_IP> with your IP address
+        data: formData,
+        //print('inside api');
+      );
 
-        // Navigate to another screen if needed (e.g., a login or home page)
-        // Get.offAll(LoginPage()); // Uncomment this line and replace with actual page
+      if (response.statusCode == 200) {
+        Get.snackbar('Success', 'Registration successful!');
       } else {
         Get.snackbar('Error', 'Registration failed. ${response.data}');
       }
