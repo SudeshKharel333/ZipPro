@@ -44,6 +44,7 @@ class EditprofileLogic extends GetxController {
       final box = GetStorage();
       String id = box
           .read('userId'); // Replace 'userId' with the key used to store the ID
+
       dio_form_data.FormData formData = dio_form_data.FormData.fromMap({
         'id': id,
         'email': emailController.text,

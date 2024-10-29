@@ -1,6 +1,8 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter_app/screen/admin/admin_binding.dart';
 import 'package:my_flutter_app/screen/admin/admin_view.dart';
+import 'package:my_flutter_app/screen/auth/editprofile/editprofile_binding.dart';
+import 'package:my_flutter_app/screen/auth/editprofile/editprofile_view.dart';
 import 'package:my_flutter_app/screen/auth/login/login_binding.dart';
 import 'package:my_flutter_app/screen/auth/login/login_view.dart';
 import 'package:my_flutter_app/screen/auth/profile/profile_binding.dart';
@@ -61,6 +63,11 @@ class AppPages {
       name: AppRoutes.adminPage,
       page: () => const AdminPage(),
       binding: AdminBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.editProfilePage,
+      page: () => const EditProfileView(),
+      binding: EditprofileBinding(),
     ),
   ];
 }
