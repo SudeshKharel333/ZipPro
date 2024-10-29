@@ -60,6 +60,13 @@ class LoginLogic extends GetxController {
       if (response.statusCode == 200) {
         // Successfully logged in
         print('Login successful: ${response.data}');
+
+// Extract user ID from response data (assuming response contains an ID field)
+        final userId = response.data['id'];
+
+        // Store user ID in GetStorage for later use
+        storage.write('userId', userId);
+
         Get.offAllNamed(AppRoutes.homeScreen);
       }
     } catch (e) {
