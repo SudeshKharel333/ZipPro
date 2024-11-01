@@ -12,7 +12,7 @@ import '../../models/slider_response.dart';
 import '../../routes/app_routes.dart';
 
 class ShopHomeLogic extends GetxController {
-  // Carousel slider controller to manage carousel actions
+  //Carousel slider controller to manage carousel actions
   CarouselSliderController carouselController = CarouselSliderController();
 
   // List to hold slider images
