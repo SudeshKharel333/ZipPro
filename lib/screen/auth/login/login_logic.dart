@@ -13,8 +13,10 @@ import '../../../core/widgets/costume_dialog.dart';
 //import '../../../providers/auth_provider.dart';
 
 class LoginLogic extends GetxController {
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController =
+      TextEditingController(text: "password");
+  TextEditingController emailController =
+      TextEditingController(text: "rough@gmail.com");
 
   //final _provider = AuthProvider();
   LoginResponse loginResponse = LoginResponse();
