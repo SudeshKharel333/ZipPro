@@ -66,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     // Text letter-by-letter animation
     _textList =
-        'Easy B2B Shopping'.split(''); // Split text into individual letters
+        'Easy  Shopping'.split(''); // Split text into individual letters
     _textAnimation = Tween<double>(
       begin: 0,
       end: _textList.length.toDouble(),

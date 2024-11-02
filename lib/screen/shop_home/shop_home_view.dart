@@ -463,14 +463,18 @@ class _ShopHomePageState extends State<ShopHomePage> {
             SizedBox(
               height: 400,
               child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.start, // Align text to the left
                 children: [
-                  Text(
-                    "Latest Products",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Latest Products",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    textAlign: TextAlign.left,
                   ),
                   Expanded(
                     child: GestureDetector(
@@ -484,80 +488,87 @@ class _ShopHomePageState extends State<ShopHomePage> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Expanded(
-                          // Wrap the GridView in an Expanded widget
-                          child: GridView.count(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            children: List.generate(_products.length, (index) {
-                              final product = _products[index];
+                        child: GridView.count(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          children: List.generate(_products.length, (index) {
+                            final product = _products[index];
 
-                              // Debugging: print the product name to the console
-                              print(
-                                  "2222222222222 product is: ${product.product_name}");
+                            // Debugging: print the product name to the console
+                            print("Product is: ${product.product_name}");
 
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.purpleAccent,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Product Image
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(
-                                          8), // Match the container's border radius
-                                      child: Image.network(
-                                        'http://192.168.1.74:3000/images/${product.image}', // Adjusted image URL
-                                        fit: BoxFit.cover,
-                                        height: 100,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return Text('Image not available',
-                                              style:
-                                                  TextStyle(color: Colors.red));
-                                        },
-                                      ),
-                                    ),
-                                    // Product Name and Price
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Text(
-                                            product
-                                                .product_name, // Display the product name
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.purpleAccent,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  // Product Image
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      'http://192.168.1.74:3000/images/${product.image}',
+                                      fit: BoxFit.cover,
+                                      height: 100,
+                                      width: double.infinity,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        print('Image load error: $error');
+                                        return Center(
+                                          child: Text(
+                                            'Image not available',
+                                            style: TextStyle(color: Colors.red),
                                           ),
-                                          Text(
-                                            '\$${product.price}', // Display the product price
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        );
+                                      },
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null)
+                                          return child;
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
                                     ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
+                                  ),
+                                  // Product Name and Price
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          product.product_name,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          '\$${product.price}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
-            ),
+            )
           ],
         ),
       ),
