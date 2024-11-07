@@ -1,14 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:my_flutter_app/widgets/category.dart'; // Import the Category model
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:my_flutter_app/core/enums/validation_type.dart';
-import 'package:my_flutter_app/models/shop_response.dart';
 import 'package:my_flutter_app/screen/auth/profile/profile_view.dart';
 import 'package:my_flutter_app/screen/cart/cart_view.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
 import '../../widgets/input_fields.dart';
-import 'shop_home_logic.dart';
 import "package:my_flutter_app/widgets/product.dart";
 
 class ShopHomePage extends StatefulWidget {
@@ -20,11 +21,33 @@ class ShopHomePage extends StatefulWidget {
 
 class _ShopHomePageState extends State<ShopHomePage> {
   List<Product> _products = [];
+  List<Category> _categories = [];
+
   final Dio _dio = Dio();
+
+  Future<void> fetchCategories() async {
+    final url = Uri.parse('http://192.168.1.74:3000/api/categories');
+
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        List<dynamic> data = json.decode(response.body);
+        setState(() {
+          _categories = data.map((item) => Category.fromJson(item)).toList();
+        });
+      } else {
+        print('Failed to load categories');
+      }
+    } catch (e) {
+      print("Error fetching categories: $e");
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     fetchProducts();
+    fetchCategories(); // Load categories on page load
   }
 
   Future<void> fetchProducts() async {
@@ -233,360 +256,59 @@ class _ShopHomePageState extends State<ShopHomePage> {
               ),
               child: Column(
                 children: [
-                  const Expanded(
-                      child: Text(
-                    "Categories",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.left,
-                  )),
-                  Container(
-                    width: MediaQuery.of(context)
-                        .size
-                        .width, // Set the desired width
-                    height: 100, // Set the desired height
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const SizedBox(
-                              width: 100, // Fixed width for the card
-                              height: 100, // Fixed height for the card
-                              child: Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Food and beverage', // Long text that may wrap
-                                    textAlign: TextAlign
-                                        .center, // Center the text horizontally
-                                    style: const TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 12, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
-                                    ),
-                                    maxLines:
-                                        2, // Max number of lines to avoid overflow
-                                    overflow: TextOverflow
-                                        .ellipsis, // Add "..." if text overflows
-                                    softWrap:
-                                        true, // Wrap text to fit within the available space
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const SizedBox(
-                              width: 100, // Fixed width for the card
-                              height: 100, // Fixed height for the card
-                              child: Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Retail and Wholesale', // Long text that may wrap
-                                    textAlign: TextAlign
-                                        .center, // Center the text horizontally
-                                    style: const TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 12, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
-                                    ),
-                                    maxLines:
-                                        2, // Max number of lines to avoid overflow
-                                    overflow: TextOverflow
-                                        .ellipsis, // Add "..." if text overflows
-                                    softWrap:
-                                        true, // Wrap text to fit within the available space
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const SizedBox(
-                              width: 100, // Fixed width for the card
-                              height: 100, // Fixed height for the card
-                              child: Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Retail and wholesale', // Long text that may wrap
-                                    textAlign: TextAlign
-                                        .center, // Center the text horizontally
-                                    style: const TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 12, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
-                                    ),
-                                    maxLines:
-                                        2, // Max number of lines to avoid overflow
-                                    overflow: TextOverflow
-                                        .ellipsis, // Add "..." if text overflows
-                                    softWrap:
-                                        true, // Wrap text to fit within the available space
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const SizedBox(
-                              width: 100, // Fixed width for the card
-                              height: 100, // Fixed height for the card
-                              child: Padding(
-                                padding: const EdgeInsets.all(
-                                    16.0), // Padding around the text
-                                child: Center(
-                                  child: Text(
-                                    'Agriculture', // Long text that may wrap
-                                    textAlign: TextAlign
-                                        .center, // Center the text horizontally
-                                    style: const TextStyle(
-                                      color: Colors.white, // Text color
-                                      fontSize: 12, // Font size
-                                      fontWeight: FontWeight.bold, // Bold text
-                                    ),
-                                    maxLines:
-                                        2, // Max number of lines to avoid overflow
-                                    overflow: TextOverflow
-                                        .ellipsis, // Add "..." if text overflows
-                                    softWrap:
-                                        true, // Wrap text to fit within the available space
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const Padding(
-                              padding: const EdgeInsets.all(
-                                  16.0), // Padding around the text
-                              child: Center(
-                                child: Text(
-                                  'Category',
-                                  style: TextStyle(
-                                    color: Colors.white, // Text color
-                                    fontSize: 18, // Font size
-                                    fontWeight: FontWeight.bold, // Bold text
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const Padding(
-                              padding: const EdgeInsets.all(
-                                  16.0), // Padding around the text
-                              child: Center(
-                                child: Text(
-                                  'Category',
-                                  style: TextStyle(
-                                    color: Colors.white, // Text color
-                                    fontSize: 18, // Font size
-                                    fontWeight: FontWeight.bold, // Bold text
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Card(
-                            elevation: 5, // Shadow depth
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // Rounded corners
-                            ),
-                            color: Colors.purple, // Card background color
-                            child: const Padding(
-                              padding: const EdgeInsets.all(
-                                  16.0), // Padding around the text
-                              child: Center(
-                                child: Text(
-                                  'Category',
-                                  style: TextStyle(
-                                    color: Colors.white, // Text color
-                                    fontSize: 18, // Font size
-                                    fontWeight: FontWeight.bold, // Bold text
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 400,
-              child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Align text to the left
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text(
-                      "Latest Products",
+                      "Categories",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        // Navigate to the second page on tap
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductPage()),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GridView.count(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          children: List.generate(_products.length, (index) {
-                            final product = _products[index];
-
-                            // Debugging: print the product name to the console
-                            print("Product is: ${product.product_name}");
-
-                            return Container(
-                              decoration: BoxDecoration(
-                                color: Colors.purpleAccent,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Product Image
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      'http://192.168.1.74:3000/images/${product.image}',
-                                      fit: BoxFit.cover,
-                                      height: 100,
-                                      width: double.infinity,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        print('Image load error: $error');
-                                        return Center(
-                                          child: Text(
-                                            'Image not available',
-                                            style: TextStyle(color: Colors.red),
-                                          ),
-                                        );
-                                      },
-                                      loadingBuilder:
-                                          (context, child, loadingProgress) {
-                                        if (loadingProgress == null)
-                                          return child;
-                                        return Center(
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      },
+                  SizedBox(
+                    height: 100, // Height of the category scroll view
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: _categories.map((category) {
+                          return Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            color: Colors.purple,
+                            child: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Center(
+                                  child: Text(
+                                    category.categoryName,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
                                     ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    softWrap: true,
                                   ),
-                                  // Product Name and Price
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          product.product_name,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          '\$${product.price}',
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            );
-                          }),
-                        ),
+                            ),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: 'Home ',
-          ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.camera),
-          //   label: '',
-          // ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chats',
-          ),
-        ],
       ),
     );
   }
