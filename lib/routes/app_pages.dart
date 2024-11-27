@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter_app/screen/admin/admin_binding.dart';
 import 'package:my_flutter_app/screen/admin/admin_view.dart';
@@ -43,8 +45,22 @@ class AppPages {
 
     // Product Page Route
     GetPage(
-      name: AppRoutes.productPage,
-      page: () => const ProductPage(),
+      name: AppRoutes.productPage +
+          '/:productId' +
+          '/:productName', // Added ':' before productName to make it a parameter
+      page: () {
+        final productId =
+            Get.parameters['productId']; // Retrieve productId from parameters
+        final productName = Get
+            .parameters['productName']; // Retrieve productName from parameters
+
+        return ProductPage(
+          product_id:
+              int.parse(productId!), // Parse productId to int and pass it
+          product_name:
+              productName!, // Pass productName as a parameter, ensuring it's not null
+        );
+      },
       binding: ProductBinding(),
     ),
 

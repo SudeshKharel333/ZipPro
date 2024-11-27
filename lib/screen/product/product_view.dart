@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  // final String productName;
-  // final String productDescription;
-  // final double productPrice;
-  // final List<String> imageUrls;
+  final int
+      product_id; // Changed variable name to follow Dart naming conventions
+  final String product_name;
 
-  const ProductPage({
-    Key? key,
-    // required this.productName,
-    // required this.productDescription,
-    // required this.productPrice,
-    // required this.imageUrls,
-  }) : super(key: key);
+  ProductPage({required this.product_id, required this.product_name});
 
   @override
   Widget build(BuildContext context) {
-    //return Scaffold();
     return Scaffold(
       appBar: AppBar(
-        title: Text("Necklace"),
+        title: Text(
+            product_name), // Use productName instead of product_id.product_name
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -29,10 +22,28 @@ class ProductPage extends StatelessWidget {
             SizedBox(
               height: 200,
               child: PageView.builder(
-                itemCount: 12,
+                itemCount: 12, // Adjust this based on your actual image count
                 itemBuilder: (context, index) {
                   return Image.network(
-                      'https://www.kgkgroup.com/wp-content/uploads/2023/08/Understand-The-Evolution-Of-Diamond-Jewellery-Through-Time_417x238.jpg');
+                    'http://192.168.1.74:3000/images/${product_id.image}',
+                    fit: BoxFit.cover,
+                    height: 100,
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(
+                        child: Text(
+                          'Image not available',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                      );
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  );
                 },
               ),
             ),
@@ -43,19 +54,19 @@ class ProductPage extends StatelessWidget {
                 children: [
                   // Product Title
                   Text(
-                    "Necklace",
+                    product_name, // Use the productName variable
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   // Product Price
                   Text(
-                    '\$${90}',
+                    '\$price', // Replace with actual price variable if available
                     style: TextStyle(fontSize: 20, color: Colors.red),
                   ),
                   SizedBox(height: 8),
                   // Product Description
                   Text(
-                    "Good Quality",
+                    "Good Quality", // Replace with actual description variable if available
                     style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(height: 16),
