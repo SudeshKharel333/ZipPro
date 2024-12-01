@@ -25,7 +25,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
   final Dio _dio = Dio();
 
   Future<void> fetchCategories() async {
-    final url = Uri.parse('http://192.168.1.74:3000/api/categories');
+    final url = Uri.parse('http://192.168.1.66:3000/api/categories');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {
@@ -50,11 +50,12 @@ class _ShopHomePageState extends State<ShopHomePage> {
 
   Future<void> fetchProducts() async {
     try {
-      final response = await _dio.get('http://192.168.1.74:3000/api/products');
+      final response = await _dio.get('http://192.168.1.66:3000/api/products');
       if (response.statusCode == 200) {
         setState(() {
           _products = List<Product>.from(
               response.data.map((item) => Product.fromJson(item)));
+          print(response.data); // For Dio
         });
       } else {
         print('Failed to load products: ${response.statusCode}');
@@ -265,9 +266,9 @@ class _ShopHomePageState extends State<ShopHomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ProductPage(
-                          product_id: index,
-                          product_name: product.product_name,
-                        ),
+                            // product_id: index,
+                            // product_name: product.product_name,
+                            ),
                       ),
                     );
                   },
@@ -282,7 +283,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: Image.network(
-                            'http://192.168.1.74:3000/images/${product.image}',
+                            'http://192.168.1.66:3000/images/${product.image}',
                             fit: BoxFit.cover,
                             height: 100,
                             width: double.infinity,
