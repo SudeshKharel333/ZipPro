@@ -81,7 +81,7 @@ class _SplashScreenState extends State<SplashScreen>
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    const LoginPage()) // Replace with your actual homepage widget
+                    const ShopHomePage()) // Replace with your actual homepage widget
             );
       }
     });
