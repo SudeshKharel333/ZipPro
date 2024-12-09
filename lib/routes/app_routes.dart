@@ -12,6 +12,6 @@ class AppRoutes {
   static const cartPage = '/cart';
   static const adminPage = '/admin';
   static const editProfilePage = '/editProfile';
-
+  static const searchPage = '/search';
   // static var viewMachine;
 }
