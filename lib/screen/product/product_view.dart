@@ -1,95 +1,83 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class ProductPage extends StatelessWidget {
-  final int
-      product_id; // Changed variable name to follow Dart naming conventions
-  final String product_name;
+  final int productId;
 
-  ProductPage({required this.product_id, required this.product_name});
+  ProductPage({required this.productId});
+
+  Future<Map<String, dynamic>> fetchProductData() async {
+    final dio = Dio();
+    final response =
+        await dio.get('http://http://192.168.1.66:4000/product/$productId');
+    return response.data;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            product_name), // Use productName instead of product_id.product_name
+        title: FutureBuilder<Map<String, dynamic>>(
+          future: fetchProductData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text('Loading...');
+            } else if (snapshot.hasError) {
+              return Text('Error');
+            } else if (snapshot.hasData) {
+              final product = snapshot.data!;
+              return Text(product['name']);
+            } else {
+              return Text('No product');
+            }
+          },
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Image Carousel
-            SizedBox(
-              height: 200,
-              child: PageView.builder(
-                itemCount: 12, // Adjust this based on your actual image count
-                itemBuilder: (context, index) {
-                  return Image.network(
-                    'http://192.168.1.74:3000/images/${product_id.image}',
-                    fit: BoxFit.cover,
-                    height: 100,
-                    width: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Center(
-                        child: Text(
-                          'Image not available',
-                          style: TextStyle(color: Colors.red),
-                        ),
-                      );
-                    },
-                    loadingBuilder: (context, child, loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-            Padding(
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: fetchProductData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData) {
+            return Center(child: Text('No data available'));
+          } else {
+            final product = snapshot.data!;
+            return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Product Title
                   Text(
-                    product_name, // Use the productName variable
+                    product['name'],
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  // Product Price
                   Text(
-                    '\$price', // Replace with actual price variable if available
-                    style: TextStyle(fontSize: 20, color: Colors.red),
-                  ),
-                  SizedBox(height: 8),
-                  // Product Description
-                  Text(
-                    "Good Quality", // Replace with actual description variable if available
-                    style: TextStyle(fontSize: 16),
+                    '\$${product['price']}',
+                    style: TextStyle(fontSize: 20, color: Colors.green),
                   ),
                   SizedBox(height: 16),
-                  // Add to Cart Button
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add to cart functionality
-                    },
-                    child: Text('Add to Cart'),
+                  product['image'] != null
+                      ? Image.network(product['image'])
+                      : SizedBox.shrink(),
+                  SizedBox(height: 16),
+                  Text(
+                    'Description:',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
-                  // Buy Now Button
-                  ElevatedButton(
-                    onPressed: () {
-                      // Buy now functionality
-                    },
-                    child: Text('Buy Now'),
+                  Text(product['description']),
+                  SizedBox(height: 16),
+                  Text(
+                    'Category: ${product['category']}',
+                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
-            ),
-          ],
-        ),
+            );
+          }
+        },
       ),
     );
   }
