@@ -13,6 +13,8 @@ import 'package:my_flutter_app/screen/auth/register/register_binding.dart';
 import 'package:my_flutter_app/screen/auth/register/register_view.dart';
 import 'package:my_flutter_app/screen/cart/cart_binding.dart';
 import 'package:my_flutter_app/screen/cart/cart_view.dart';
+import 'package:my_flutter_app/screen/home/SearchScreen/SearchBinding.dart';
+import 'package:my_flutter_app/screen/home/SearchScreen/SearchScreen.dart';
 import 'package:my_flutter_app/screen/product/product_binding.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
 import 'package:my_flutter_app/screen/shop_home/shop_home_binding.dart';
@@ -45,23 +47,20 @@ class AppPages {
 
     // Product Page Route
     GetPage(
-      name: AppRoutes.productPage +
-          '/:productId' +
-          '/:productName', // Added ':' before productName to make it a parameter
+      name: AppRoutes.productPage,
       page: () {
-        final productId =
-            Get.parameters['productId']; // Retrieve productId from parameters
-        final productName = Get
-            .parameters['productName']; // Retrieve productName from parameters
-
-        return ProductPage(
-          product_id:
-              int.parse(productId!), // Parse productId to int and pass it
-          product_name:
-              productName!, // Pass productName as a parameter, ensuring it's not null
-        );
+        final productId = int.tryParse(Get.parameters['productId'] ?? '') ?? 0;
+        return ProductPage(productId: productId);
       },
-      binding: ProductBinding(),
+    ),
+
+    GetPage(
+      name: AppRoutes.searchPage,
+      page: () {
+        final query = Get.parameters['query'] ?? "";
+        return SearchScreen(query: query);
+      },
+      binding: Searchbinding(),
     ),
 
     // Profile Page Route
