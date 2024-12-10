@@ -1,16 +1,25 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
+//import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 class ProductPage extends StatelessWidget {
   final int productId;
 
-  ProductPage({required this.productId});
+  const ProductPage({required this.productId});
 
   Future<Map<String, dynamic>> fetchProductData() async {
-    final dio = Dio();
-    final response =
-        await dio.get('http://http://192.168.1.66:4000/product/$productId');
-    return response.data;
+    // final dio = Dio();
+    final url = Uri.parse('http://192.168.1.66:4000/product/$productId');
+
+    // try {
+    final response = await http.get(url);
+    // Make an HTTP GET request to the serve
+    // final response =
+    //     await dio.get('http://192.168.1.66:4000/product/$productId');
+    print(response.body);
+    return jsonDecode(response.body);
   }
 
   @override
@@ -26,7 +35,7 @@ class ProductPage extends StatelessWidget {
               return Text('Error');
             } else if (snapshot.hasData) {
               final product = snapshot.data!;
-              return Text(product['name']);
+              return Text(product['product_name']);
             } else {
               return Text('No product');
             }
@@ -50,7 +59,7 @@ class ProductPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product['name'],
+                    product['product_name'],
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
@@ -60,7 +69,8 @@ class ProductPage extends StatelessWidget {
                   ),
                   SizedBox(height: 16),
                   product['image'] != null
-                      ? Image.network(product['image'])
+                      ? Image.network(
+                          'http://192.168.1.66:4000/images/${product['image']}')
                       : SizedBox.shrink(),
                   SizedBox(height: 16),
                   Text(
@@ -69,10 +79,10 @@ class ProductPage extends StatelessWidget {
                   ),
                   Text(product['description']),
                   SizedBox(height: 16),
-                  Text(
-                    'Category: ${product['category']}',
-                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
-                  ),
+                  // Text(
+                  //   'Category: ${product['category']}',
+                  //   style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                  // ),
                 ],
               ),
             );
