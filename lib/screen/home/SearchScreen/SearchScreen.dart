@@ -30,7 +30,7 @@ class _SearchScreenState extends State<SearchScreen> {
     try {
       // Update the URL with query parameter for search
       final response = await _dio.get(
-        'http://192.168.1.66:4000/api/products/search',
+        'http://192.168.1.75:4000/api/products/search',
         queryParameters: {'query': query}, // Pass the search query
       );
       if (response.statusCode == 200) {
@@ -136,7 +136,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                           borderRadius:
                                               BorderRadius.circular(8),
                                           child: Image.network(
-                                            'http://192.168.1.66:4000/images/${product.image}',
+                                            'http://192.168.1.75:4000/images/${product.image}',
                                             fit: BoxFit.cover,
                                             height: 100,
                                             width: double.infinity,
