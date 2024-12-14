@@ -29,7 +29,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
   List<Category> _categories = [];
 
 // An instance of the Dio package for making HTTP requests (like GET, POST, etc.).
-  final Dio _dio = Dio();
+  // final Dio _dio = Dio();
 
 // A controller to manage the text input field for searching products.
   final TextEditingController _searchController = TextEditingController();

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import '../../constants/api.dart';
 import '../main.dart';
-import '../models/notice_module.dart';
+
 import '../models/shop_response.dart';
 
 class SliderProvider {
@@ -71,7 +71,7 @@ class SliderProvider {
           "\",\"contact\":\"" +
           contactNo +
           "\"}";
-      Categories categories = new Categories();
+      Categories categories = Categories();
       // var json = Categories.toJson(categories);
       final response = await _dio.get('sliders', data: json);
       return response;

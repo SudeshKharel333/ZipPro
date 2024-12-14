@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:my_flutter_app/screen/admin/admin_binding.dart';
 import 'package:my_flutter_app/screen/admin/admin_view.dart';
 import 'package:my_flutter_app/screen/auth/editprofile/editprofile_binding.dart';
@@ -15,7 +13,6 @@ import 'package:my_flutter_app/screen/cart/cart_binding.dart';
 import 'package:my_flutter_app/screen/cart/cart_view.dart';
 import 'package:my_flutter_app/screen/home/SearchScreen/SearchBinding.dart';
 import 'package:my_flutter_app/screen/home/SearchScreen/SearchScreen.dart';
-import 'package:my_flutter_app/screen/product/product_binding.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
 import 'package:my_flutter_app/screen/shop_home/shop_home_binding.dart';
 import 'package:my_flutter_app/screen/shop_home/shop_home_view.dart';
