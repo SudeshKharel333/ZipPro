@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:my_flutter_app/screen/auth/auth_helper.dart';
 import 'package:my_flutter_app/screen/auth/editprofile/editprofile_view.dart';
+import 'package:my_flutter_app/screen/auth/login/login_view.dart';
 import 'package:my_flutter_app/widgets/buttons.dart';
 
 void main() => runApp(MyApp());
@@ -100,8 +102,12 @@ class ProfilePage extends StatelessWidget {
                   ),
 
                   ElevatedButton(
-                    onPressed: () {
-                      // Add action here
+                    onPressed: () async {
+                      // Set login status to true
+                      await AuthHelper.setLoginStatus(false);
+
+                      // Navigate to the LoginPage
+                      Get.to(LoginPage());
                     },
                     child: Text("Logout"),
                     style: ElevatedButton.styleFrom(
