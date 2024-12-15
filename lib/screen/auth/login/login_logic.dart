@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 //import 'package:my_flutter_app/constants/api.dart';
 import 'package:my_flutter_app/core/widgets/loading_dialog.dart';
 import 'package:my_flutter_app/models/login_response.dart';
+import 'package:my_flutter_app/screen/auth/auth_helper.dart';
 import 'package:my_flutter_app/routes/app_routes.dart';
 
 import '../../../core/helper/input_validator.dart';
@@ -48,20 +49,21 @@ class LoginLogic extends GetxController {
       print("inside api call2" + email + "-" + password);
 
       var response = await dio.post(
-        'http://192.168.1.74:3000/login',
+        'http://192.168.1.75:4000/login',
         data: {
           'email': email,
           'password': password,
         },
         options: Options(
           headers: {'Content-Type': 'application/json; charset=utf-8'},
-          extra: {'port': 3000},
+          extra: {'port': 4000},
         ),
       );
       Get.back(); // Dismiss loading dialog
       if (response.statusCode == 200) {
         // Successfully logged in
         print('Login successful: ${response.data}');
+        AuthHelper.setLoginStatus(true);
 
 // Extract user ID from response data (assuming response contains an ID field)
         final userId = response.data['id'];
