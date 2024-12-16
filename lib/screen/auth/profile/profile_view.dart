@@ -4,25 +4,28 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:my_flutter_app/screen/auth/auth_helper.dart';
 import 'package:my_flutter_app/screen/auth/editprofile/editprofile_view.dart';
 import 'package:my_flutter_app/screen/auth/login/login_view.dart';
-import 'package:my_flutter_app/widgets/buttons.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: ProfilePage(),
     );
   }
 }
 
 class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
         centerTitle: true,
       ),
       body: Padding(
@@ -90,15 +93,15 @@ class ProfilePage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       // Add action here
-                      Get.to(EditProfileView());
+                      Get.to(const EditProfileView());
                     },
-                    child: Text("Edit Profile"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue, // Background color
                       foregroundColor: Colors.white, // Text color
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                     ),
+                    child: const Text("Edit Profile"),
                   ),
 
                   ElevatedButton(
@@ -106,16 +109,15 @@ class ProfilePage extends StatelessWidget {
                       // Set login status to true
                       await AuthHelper.setLoginStatus(false);
 
-                      // Navigate to the LoginPage
-                      Get.to(LoginPage());
+                      Get.off(() => const LoginPage());
                     },
-                    child: Text("Logout"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black, // Background color
                       foregroundColor: Colors.white, // Text color
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                     ),
+                    child: const Text("Logout"),
                   ),
 
                   // Add more details here
