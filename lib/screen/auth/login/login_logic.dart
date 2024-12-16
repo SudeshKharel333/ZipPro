@@ -46,7 +46,7 @@ class LoginLogic extends GetxController {
     String password = passwordController.text;
 
     try {
-      print("inside api call2" + email + "-" + password);
+      debugPrint("inside api call2" + email + "-" + password);
 
       var response = await dio.post(
         'http://192.168.1.75:4000/login',
