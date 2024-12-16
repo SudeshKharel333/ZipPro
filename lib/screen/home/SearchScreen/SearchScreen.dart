@@ -11,6 +11,29 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
+String? _selectedSortOption = 'Price: Low to High'; // Default sorting option
+List<String> _sortOptions = [
+  'Price: Low to High',
+  'Price: High to Low',
+  'Rating: High to Low',
+  'Rating: Low to High'
+];
+void _sortProducts(String sortOption) {
+  // Pass the selected sort option to the backend or the product list logic
+  print('Sorting by: $sortOption');
+  // Call the method to sort products based on the selected option
+  // For example, you can call an API to fetch sorted products
+  fetchSortedProducts(sortOption);
+}
+
+// This method would call the backend or sort your list of products based on the selected option
+void fetchSortedProducts(String sortOption) {
+  // Your API call or local sorting logic will go here.
+  // For example:
+  // if (sortOption == 'Price: Low to High') { sortByPrice('asc'); }
+  // else if (sortOption == 'Rating: High to Low') { sortByRating('desc'); }
+}
+
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<Product> _products = [];
@@ -22,42 +45,37 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    fetchProducts();
-    _filterProducts(widget.query); // Filter products based on the query
+    _searchController.text = widget.query;
+    searchProducts(widget.query);
   }
 
-  Future<void> fetchProducts({String query = ''}) async {
-    try {
-      // Update the URL with query parameter for search
-      final response = await _dio.get(
-        'http://192.168.1.75:4000/api/products/search',
-        queryParameters: {'query': query}, // Pass the search query
-      );
-      if (response.statusCode == 200) {
-        setState(() {
-          _products = List<Product>.from(
-            response.data.map((item) => Product.fromJson(item)),
-          );
-          _filteredProducts = _products; // Initially display all products
-        });
-      } else {
-        print('Failed to load products: ${response.statusCode}');
+  Future<void> searchProducts(String query) async {
+    if (query.isNotEmpty) {
+      debugPrint('===> Searching api for $query');
+      try {
+        // Update the URL with query parameter for search
+        final response = await _dio.get(
+          'http://192.168.1.75:4000/api/products/search',
+          queryParameters: {'query': query}, // Pass the search query
+        );
+        if (response.statusCode == 200) {
+          setState(() {
+            _products = List<Product>.from(
+              response.data.map((item) => Product.fromJson(item)),
+            );
+            _filteredProducts = _products; // Initially display all products
+          });
+        } else {
+          debugPrint('Failed to load products: ${response.statusCode}');
+        }
+      } catch (e) {
+        debugPrint('Error fetching products: $e');
       }
-    } catch (e) {
-      print('Error fetching products: $e');
     }
   }
 
-  void _filterProducts(String query) {
-    final results = _products.where((product) {
-      final nameLower = product.name.toLowerCase();
-      final queryLower = query.toLowerCase();
-      return nameLower.contains(queryLower);
-    }).toList();
-
-    setState(() {
-      _filteredProducts = results;
-    });
+  void _onSearchBoxTextChange(String searchText) {
+    searchProducts(searchText);
   }
 
   @override
@@ -82,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         controller: _searchController,
-                        onChanged: _filterProducts,
+                        onChanged: _onSearchBoxTextChange,
                         decoration: InputDecoration(
                           hintText: "Search for products...",
                           prefixIcon: const Icon(Icons.search),
