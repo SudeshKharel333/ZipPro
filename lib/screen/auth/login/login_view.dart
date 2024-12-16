@@ -18,6 +18,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  void initState() {
+    super.initState();
+    debugPrint('Login page initState()');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginLogic>(builder: (logic) {
       return Scaffold(
@@ -36,68 +42,62 @@ class _LoginPageState extends State<LoginPage> {
                       height: 170,
                     ),
                   ),
-                  Gap(12),
-                  Text(
+                  const Gap(12),
+                  const Text(
                     "Welcome to \n ZipPro",
                     style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                         color: Colors.black),
                   ),
-                  Text(
+                  const Text(
                     "version 1.0.0",
                     style: TextStyle(
                         fontSize: 14,
                         color: Color.fromARGB(255, 190, 202, 212)),
                   ),
-                  Gap(44),
-                  Icon(
+                  const Gap(44),
+                  const Icon(
                     Icons.person,
                     color: Colors.black,
                     size: 100.0,
                   ),
-                  Text(
+                  const Text(
                     "Enter your credentials to login",
                     style: TextStyle(
                         fontSize: 19,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
-                  Gap(16),
+                  const Gap(16),
                   CostumeFormField(
                     validationType: ValidationType.email,
                     controller: logic.emailController,
                     hintText: "Enter your Email",
-                    onChanged: () {
-                      setState(() {});
-                    },
                     labelText: "Email",
                   ),
-                  Gap(16),
+                  const Gap(16),
                   CostumeFormField(
                     validationType: ValidationType.password,
                     controller: logic.passwordController,
                     hintText: "Enter your Password",
                     labelText: "Password",
-                    onChanged: () {
-                      setState(() {});
-                    },
                   ),
-                  Gap(6),
+                  const Gap(6),
                   Row(
                     children: [
                       const Spacer(),
                       InkWell(
                           onTap: () {
-                            print("forget password clicked");
+                            debugPrint("forget password clicked");
                           },
-                          child: Text(
+                          child: const Text(
                             "Forget password?",
                             style: TextStyle(color: Colors.red),
                           ))
                     ],
                   ),
-                  Gap(40),
+                  const Gap(40),
                   CostumeButtons.common(
                     labelText: 'Login',
                     onPressed: logic.validateFields()
@@ -108,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                         : null, // Disable button if validation fails
                     isEnabled: logic.validateFields(),
                   ),
-                  Gap(20),
+                  const Gap(20),
                   CostumeButtons.blueBorder(
                     labelText: 'Signup',
                     onPressed: () {
