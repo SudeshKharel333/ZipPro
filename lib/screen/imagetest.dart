@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/internal_patch.dart';
+
 import 'package:dio/dio.dart';
 import 'dart:io';
 
@@ -12,8 +14,8 @@ Future<void> uploadImage(File imageFile) async {
 
   try {
     var response = await dio.post(uploadURL, data: formData);
-    debugPrint('File uploaded: ${response.data}');
+    printToConsole('File uploaded: ${response.data}');
   } catch (e) {
-    debugPrint('Error occurred while uploading: $e');
+    printToConsole('Error occurred while uploading: $e');
   }
 }
