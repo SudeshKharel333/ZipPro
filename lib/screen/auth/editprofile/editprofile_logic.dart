@@ -25,10 +25,11 @@ class EditprofileLogic extends GetxController {
         confirmPasswordController.text.isEmpty ||
         phoneController.text.isEmpty ||
         fullNameController.text.isEmpty)
-    //    || imageFile == null) {
-    //   Get.snackbar('Error', 'Please fill in all fields.');
-    //   return;
-    // }
+    //|| imageFile == null) {
+    {
+      Get.snackbar('Error', 'Please fill in all fields.');
+      return;
+    }
 
     if (passwordController.text != confirmPasswordController.text) {
       Get.snackbar('Error', 'Passwords do not match.');
@@ -69,7 +70,7 @@ class EditprofileLogic extends GetxController {
         Get.snackbar('Error', 'Update failed. ${response.data}');
       }
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
       Get.snackbar('Error', 'An error occurred during update.');
     }
   }

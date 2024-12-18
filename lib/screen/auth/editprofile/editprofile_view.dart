@@ -57,19 +57,19 @@ class _EditProfileViewState extends State<EditProfileView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.person_outline_rounded,
                       size: 50.0,
                       color: Colors.red,
                     ),
-                    Text(
+                    const Text(
                       "Enter your credentials to update",
                       style: TextStyle(
                           fontSize: 19,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
-                    Gap(16),
+                    const Gap(16),
                     CostumeFormField(
                       validationType: ValidationType.name,
                       hintText: "Enter Full Name",
@@ -79,7 +79,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       },
                       labelText: "Name",
                     ),
-                    Gap(16),
+                    const Gap(16),
                     CostumeFormField(
                       validationType: ValidationType.phone,
                       hintText: "Enter Phone Number",
@@ -89,7 +89,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       },
                       labelText: "Phone Number",
                     ),
-                    Gap(16),
+                    const Gap(16),
                     CostumeFormField(
                       validationType: ValidationType.email,
                       controller: logic.emailController,
@@ -99,7 +99,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                       },
                       labelText: "Email",
                     ),
-                    Gap(16),
+                    const Gap(16),
                     Column(
                       children: [
                         CostumeFormField(
@@ -111,7 +111,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                             setState(() {});
                           },
                         ),
-                        Gap(16),
+                        const Gap(16),
                         CostumeFormField(
                           validationType: ValidationType.password,
                           controller: logic.confirmPasswordController,
@@ -127,7 +127,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                         ),
                       ],
                     ),
-                    Gap(20),
+                    const Gap(20),
                     // _imageFile != null
                     //     ? Image.file(_imageFile!)
                     //     : Text('No image selected.'),
@@ -136,7 +136,7 @@ class _EditProfileViewState extends State<EditProfileView> {
                     //   onPressed: _pickImage,
                     //   child: Text('Pick Image'),
                     // ),
-                    Gap(20),
+                    const Gap(20),
                     CostumeButtons.blueBorder(
                       labelText: 'Update',
                       onPressed: () {
