@@ -50,7 +50,7 @@ class ShopHomeLogic extends GetxController {
   //     // Parsing response data into a list of categories
   //     categories =
   //         (response.data as List).map((x) => Categories.fromJson(x)).toList();
-  //     print(categories); // Debugging
+  //     debugPrint(categories); // Debugging
   //   } else {
   //     // If unauthorized, navigate to login screen
   //     if (response.statusCode == 401) {
@@ -79,7 +79,7 @@ class ShopHomeLogic extends GetxController {
 
   //   // If response is successful, log the categories
   //   if (response.statusCode == 200 || response.statusCode == 201) {
-  //     print(categories); // Debugging
+  //     debugPrint(categories); // Debugging
   //   } else {
   //     // Displaying an error dialog if the server fails
   //     showDialog(
@@ -147,7 +147,7 @@ class ShopHomeLogic extends GetxController {
   //       imgList
   //           .add("${apiBaseImageUrl}assets/images/sliders/${item.sliderImage}");
   //     }
-  //     print(imgList); // Debugging
+  //     debugPrint(imgList); // Debugging
   //   } else {
   //     // Show error dialog in case of a failed server response
   //     showDialog(

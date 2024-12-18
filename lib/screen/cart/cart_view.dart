@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/screen/Checkout/checkout_view.dart';
+import 'package:my_flutter_app/screen/checkout/checkout_view.dart';
 
 class CartView extends StatelessWidget {
   // final String productName;

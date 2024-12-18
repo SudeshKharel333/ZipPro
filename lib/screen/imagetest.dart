@@ -12,8 +12,8 @@ Future<void> uploadImage(File imageFile) async {
 
   try {
     var response = await dio.post(uploadURL, data: formData);
-    print('File uploaded: ${response.data}');
+    debugPrint('File uploaded: ${response.data}');
   } catch (e) {
-    print('Error occurred while uploading: $e');
+    debugPrint('Error occurred while uploading: $e');
   }
 }

@@ -61,7 +61,7 @@ class EditprofileLogic extends GetxController {
       final response = await _dio.post(
         'http://192.168.1.74:3000/updateProfile', // replace <YOUR_LOCAL_IP> with your IP address
         data: formData,
-        //print('inside api');
+        //debugPrint('inside api');
       );
 
       if (response.statusCode == 200) {

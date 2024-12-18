@@ -4,11 +4,11 @@ import 'package:my_flutter_app/screen/product/product_view.dart';
 import 'package:my_flutter_app/widgets/product.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key, required this.query}) : super(key: key);
+  const SearchScreen({super.key, required this.query});
   final String query;
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
 String? _selectedSortOption = 'Price: Low to High'; // Default sorting option
@@ -20,7 +20,7 @@ List<String> _sortOptions = [
 ];
 void _sortProducts(String sortOption) {
   // Pass the selected sort option to the backend or the product list logic
-  print('Sorting by: $sortOption');
+  debugPrint('Sorting by: $sortOption');
   // Call the method to sort products based on the selected option
   // For example, you can call an API to fetch sorted products
   fetchSortedProducts(sortOption);

@@ -30,7 +30,7 @@ class CostumeFormField extends StatefulWidget {
     this.prefixText,
     this.enableCounter,
     this.passwordController,
-    this.isSearch=false,
+    this.isSearch = false,
   });
 
   const CostumeFormField.confirmPassword({
@@ -61,7 +61,7 @@ class CostumeFormField extends StatefulWidget {
     this.prefixText,
     this.enableCounter,
     this.passwordController,
-    this.isSearch=true,
+    this.isSearch = true,
   });
 
   @override
@@ -71,7 +71,6 @@ class CostumeFormField extends StatefulWidget {
 class _CostumeFormFieldState extends State<CostumeFormField> {
   var passSeen = true;
 
-
   @override
   Widget build(BuildContext context) {
     // if (widget.validationType == ValidationType.password) {
@@ -80,7 +79,10 @@ class _CostumeFormFieldState extends State<CostumeFormField> {
 
     return TextFormField(
         controller: widget.controller,
-        obscureText: (widget.validationType == ValidationType.password ||widget.validationType == ValidationType.confirmPassword)?passSeen:false,
+        obscureText: (widget.validationType == ValidationType.password ||
+                widget.validationType == ValidationType.confirmPassword)
+            ? passSeen
+            : false,
         onChanged: (a) {
           // setState(() {
           //
@@ -100,7 +102,8 @@ class _CostumeFormFieldState extends State<CostumeFormField> {
             return InputValidators.simpleValidation(value);
           }
           if (widget.validationType == ValidationType.confirmPassword) {
-            return InputValidators.confirmPasswordValidator(value, widget.passwordController?.text);
+            return InputValidators.confirmPasswordValidator(
+                value, widget.passwordController?.text);
           }
 
           return null;
@@ -118,7 +121,7 @@ class _CostumeFormFieldState extends State<CostumeFormField> {
                   ? null
                   : "",
           suffixIconColor: HexColor.fromHex("#919BA7"),
-          prefixIcon: widget.isSearch!? const Icon(Icons.search):null,
+          prefixIcon: widget.isSearch! ? const Icon(Icons.search) : null,
           suffixIcon: (widget.validationType == ValidationType.password ||
                   widget.validationType == ValidationType.confirmPassword)
               ? InkWell(

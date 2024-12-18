@@ -54,7 +54,7 @@ class RegisterLogic extends GetxController {
       final response = await _dio.post(
         'http://192.168.1.74:3000/register', // replace <YOUR_LOCAL_IP> with your IP address
         data: formData,
-        //print('inside api');
+        //debugPrint('inside api');
       );
 
       if (response.statusCode == 200) {
@@ -63,7 +63,7 @@ class RegisterLogic extends GetxController {
         Get.snackbar('Error', 'Registration failed. ${response.data}');
       }
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
       Get.snackbar('Error', 'An error occurred during registration.');
     }
   }

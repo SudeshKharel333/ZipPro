@@ -18,7 +18,7 @@ class ProductPage extends StatelessWidget {
     // Make an HTTP GET request to the serve
     // final response =
     //     await dio.get('http://192.168.1.75:4000/product/$productId');
-    print(response.body);
+    debugPrint(response.body);
     return jsonDecode(response.body);
   }
 

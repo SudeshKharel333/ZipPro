@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:my_flutter_app/screen/cart_screen.dart';
-import 'package:my_flutter_app/screen/home/search_screen/search_view.dart';
+import 'package:my_flutter_app/screen/search_screen/search_view.dart';
 import 'package:my_flutter_app/widgets/category.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -68,11 +68,11 @@ class _ShopHomePageState extends State<ShopHomePage> {
         });
       } else {
         // If the response is not successful, print an error message.
-        print('Failed to load categories');
+        debugPrint('Failed to load categories');
       }
     } catch (e) {
       // Handle any errors during the HTTP request or JSON parsing.
-      print("Error fetching categories: $e");
+      debugPrint("Error fetching categories: $e");
     }
   }
 
@@ -96,11 +96,11 @@ class _ShopHomePageState extends State<ShopHomePage> {
         });
       } else {
         // If the response status code is not 200, log an error message.
-        print('Failed to load products');
+        debugPrint('Failed to load products');
       }
     } catch (e) {
       // Catch and print any errors that occur during the request or parsing.
-      print("Error fetching products: $e");
+      debugPrint("Error fetching products: $e");
     }
   }
 
@@ -344,7 +344,6 @@ class _ShopHomePageState extends State<ShopHomePage> {
   }
 
   Widget _buildProductCard(Product product) {
-    print("inside product");
     return GestureDetector(
       onTap: () {
         Navigator.push(

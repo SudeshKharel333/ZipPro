@@ -62,7 +62,7 @@ class LoginLogic extends GetxController {
       Get.back(); // Dismiss loading dialog
       if (response.statusCode == 200) {
         // Successfully logged in
-        print('Login successful: ${response.data}');
+        debugPrint('Login successful: ${response.data}');
         AuthHelper.setLoginStatus(true);
 
 // Extract user ID from response data (assuming response contains an ID field)
