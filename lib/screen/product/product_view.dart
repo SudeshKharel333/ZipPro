@@ -79,6 +79,7 @@ class ProductPage extends StatelessWidget {
                   ),
                   Text(product['description']),
                   SizedBox(height: 16),
+
                   // Text(
                   //   'Category: ${product['category']}',
                   //   style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),

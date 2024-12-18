@@ -8,8 +8,7 @@ import 'package:my_flutter_app/screen/auth/profile/profile_binding.dart';
 import 'package:my_flutter_app/screen/auth/profile/profile_view.dart';
 import 'package:my_flutter_app/screen/auth/register/register_binding.dart';
 import 'package:my_flutter_app/screen/auth/register/register_view.dart';
-import 'package:my_flutter_app/screen/cart/cart_binding.dart';
-import 'package:my_flutter_app/screen/cart/cart_view.dart';
+
 import 'package:my_flutter_app/screen/search_screen/search_binding.dart';
 import 'package:my_flutter_app/screen/search_screen/search_view.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
@@ -65,11 +64,7 @@ class AppPages {
       page: () => const ProfilePage(),
       binding: ProfileBinding(),
     ),
-    GetPage(
-      name: AppRoutes.cartPage,
-      page: () => const CartView(),
-      binding: CartBinding(),
-    ),
+
     GetPage(
       name: AppRoutes.editProfilePage,
       page: () => const EditProfileView(),

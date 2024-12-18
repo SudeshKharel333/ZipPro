@@ -9,7 +9,6 @@ import 'dart:convert';
 
 import 'package:my_flutter_app/core/enums/validation_type.dart';
 import 'package:my_flutter_app/screen/auth/profile/profile_view.dart';
-import 'package:my_flutter_app/screen/cart/cart_view.dart';
 import 'package:my_flutter_app/screen/product/product_view.dart';
 // Import your search screen
 import '../../widgets/input_fields.dart';
