@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:my_flutter_app/screen/home/SearchScreen/SearchScreen.dart';
+import 'package:my_flutter_app/screen/cart_screen.dart';
+import 'package:my_flutter_app/screen/home/search_screen/search_view.dart';
 import 'package:my_flutter_app/widgets/category.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -193,7 +194,7 @@ class _ShopHomePageState extends State<ShopHomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const CartView()),
+                                      builder: (context) => const CartScreen()),
                                 );
                               },
                             ),
