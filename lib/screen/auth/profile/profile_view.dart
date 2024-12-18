@@ -5,19 +5,6 @@ import 'package:my_flutter_app/screen/auth/auth_helper.dart';
 import 'package:my_flutter_app/screen/auth/editprofile/editprofile_view.dart';
 import 'package:my_flutter_app/screen/auth/login/login_view.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: ProfilePage(),
-    );
-  }
-}
-
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -109,7 +96,11 @@ class ProfilePage extends StatelessWidget {
                       // Set login status to true
                       await AuthHelper.setLoginStatus(false);
 
-                      Get.off(() => const LoginPage());
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black, // Background color
