@@ -2,12 +2,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthHelper {
   static Future<void> setLoginStatus(bool status) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isLoggedIn', status);
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setBool('isLoggedIn', status);
   }
 
-  static Future<bool> getLoginStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getBool('isLoggedIn') ?? false;
+  static Future<bool> isLoggedIn() async {
+    final preferences = await SharedPreferences.getInstance();
+    return preferences.getBool('isLoggedIn') ?? false;
   }
 }

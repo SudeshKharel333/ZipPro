@@ -3,6 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:my_flutter_app/core/app_managers/assets_managers.dart';
 import 'package:my_flutter_app/core/enums/validation_type.dart';
+import 'package:my_flutter_app/routes/app_routes.dart';
+import 'package:my_flutter_app/screen/auth/auth_helper.dart';
 import 'package:my_flutter_app/screen/auth/register/register_view.dart';
 
 import '../../../widgets/buttons.dart';
@@ -21,6 +23,14 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     debugPrint('Login page initState()');
+
+    // Checking if logged in to skip login screen
+    AuthHelper.isLoggedIn().then((isLoggedIn) {
+      debugPrint('isLoggedIn = $isLoggedIn');
+      if (isLoggedIn) {
+        Get.offAllNamed(AppRoutes.homeScreen);
+      }
+    });
   }
 
   @override
