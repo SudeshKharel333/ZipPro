@@ -39,10 +39,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     alice = Alice(
-      showNotification: true,
-      showInspectorOnShake: true,
-      maxCallsCount: 1000,
-    );
+        // showNotification: true,
+        // showInspectorOnShake: true,
+        // maxCallsCount: 1000,
+        );
     super.initState();
     checkLoginStatus(); // Check login state on app start
   }

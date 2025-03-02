@@ -11,13 +11,13 @@ class ProductPage extends StatelessWidget {
 
   Future<Map<String, dynamic>> fetchProductData() async {
     // final dio = Dio();
-    final url = Uri.parse('http://192.168.1.75:4000/product/$productId');
+    final url = Uri.parse('http://192.168.100.230:4000/product/$productId');
 
     // try {
     final response = await http.get(url);
     // Make an HTTP GET request to the serve
     // final response =
-    //     await dio.get('http://192.168.1.75:4000/product/$productId');
+    //     await dio.get('http://192.168.100.230:4000/product/$productId');
     debugPrint(response.body);
     return jsonDecode(response.body);
   }
@@ -70,7 +70,7 @@ class ProductPage extends StatelessWidget {
                   SizedBox(height: 16),
                   product['image'] != null
                       ? Image.network(
-                          'http://192.168.1.75:4000/images/${product['image']}')
+                          'http://192.168.100.230:4000/images/${product['image']}')
                       : SizedBox.shrink(),
                   SizedBox(height: 16),
                   Text(
